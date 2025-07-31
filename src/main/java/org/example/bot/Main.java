@@ -29,6 +29,20 @@ class BotListener extends ListenerAdapter {
         if (event.getAuthor().isBot()) return;
         if (event.getMessage().getContentRaw().startsWith("#")) {
             if (event.getMessage().getContentRaw().equals("#help")) {
+                EmbedBuilder eb = new EmbedBuilder()
+                        .setTitle("봇 도움말 🛠️")
+                        .setDescription("사용 가능한 명령어 목록입니다:")
+                        .setColor(Color.CYAN)
+                        .addField("#안녕", "봇이 인사를 합니다.", false)
+                        .addField("#쥬니퍼계산", "쥬니퍼베리 씨앗 오일 제작 이득을 계산합니다.", false)
+                        // 필요하면 더 추가
+                        .setFooter("궁금한 점이 있으면 언제든 #help 를 입력해 보세요!");
+
+                event.getChannel()
+                        .sendMessageEmbeds(eb.build())
+                        .queue();
+            }
+            if (event.getMessage().getContentRaw().equals("#안녕")) {
                 event.getChannel().sendMessage("ㅋㅋ뭘봐").queue();
             }
 
