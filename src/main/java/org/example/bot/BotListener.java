@@ -24,7 +24,7 @@ public class BotListener extends ListenerAdapter {
         if (command != null) {
             command.execute(event, args);
         } else {
-            event.getChannel().sendMessage("알 수 없는 명령어입니다. `#help`를 입력해 보세요.").queue();
+            event.getChannel().sendMessage("사람말을 해;; `#help`나 입력해 보셈.").queue();
         }
     }
 }

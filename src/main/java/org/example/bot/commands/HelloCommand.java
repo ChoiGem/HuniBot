@@ -11,7 +11,8 @@ public class HelloCommand implements BotCommand {
             "어쩌라고",
             "뭐래 ㅋㅋ",
             "ㅋ",
-            "아니"
+            "아니",
+            "ㅎㅇ"
     };
 
     @Override

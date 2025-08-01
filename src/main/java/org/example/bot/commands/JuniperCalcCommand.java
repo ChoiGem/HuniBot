@@ -37,21 +37,21 @@ public class JuniperCalcCommand implements BotCommand {
             NumberFormat nf = NumberFormat.getNumberInstance(Locale.KOREA);
 
             EmbedBuilder embed = new EmbedBuilder();
-            embed.setTitle("🧪 쥬니퍼베리 오일 수익 계산기");
+            embed.setTitle("🧪 특별히 쥬니퍼베리 오일 수익을 계산해주지");
             embed.setColor(new Color(108, 193, 245));
-            embed.setDescription("100개 제작 기준 시뮬레이션");
+            embed.setDescription("100개 제작 기준 시뮬임");
 
-            embed.addField("📦 씨앗 가격", nf.format(seedPrice) + " 메소", true);
-            embed.addField("🧴 오일 가격", nf.format(oilPrice) + " 메소", true);
-            embed.addField("🔧 오일 1개 제작비", nf.format(makeCost) + " 메소", false);
+            embed.addField("📦 씨앗 가격은", nf.format(seedPrice) + " 메소임", true);
+            embed.addField("🧴 오일 가격은", nf.format(oilPrice) + " 메소임", true);
+            embed.addField("🔧 오일 1개 제작비는", nf.format(makeCost) + " 메소다. 개싼듯 ㅇㅇ", false);
 
             embed.addBlankField(false);
 
-            embed.addField("🧪 오일 제작의 경우", "▼ 아래는 오일을 제작했을 때의 시뮬레이션 결과입니다.", false);
-            embed.addField("🎯 평균 성공 수 (90%)", successAvg + "개", true);
-            embed.addField("💸 평균 수익", formatProfit(profitAvg), true);
+            embed.addField("🧪 오일 제작할 때 시뮬임", "▼ 너 미래니까 잘 보셈", false);
+            embed.addField("🎯 평균 성공 수는 90%로", successAvg + "개 제작함. ㅈ망겜이네 ㄷㄷ", true);
+            embed.addField("💸 평균 수익은", formatProfit(profitAvg), true);
 
-            embed.setFooter("쥬니퍼베리 오일 계산기 by HuniBot");
+            embed.setFooter("쥬니퍼베리 오일 계산기 by HanbinBot");
 
             event.getChannel().sendMessageEmbeds(embed.build()).queue();
 
@@ -63,6 +63,6 @@ public class JuniperCalcCommand implements BotCommand {
     private String formatProfit(int profit) {
         NumberFormat nf = NumberFormat.getNumberInstance(Locale.KOREA);
         String formatted = nf.format(Math.abs(profit));
-        return (profit >= 0 ? "🟢 +" : "🔴 -") + formatted + " 메소";
+        return (profit >= 0 ? "🟢 +" : "🔴 -") + formatted + " 메소다. 이거 벌려고 채집하네 ㅋㅋ";
     }
 }
