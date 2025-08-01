@@ -20,7 +20,7 @@ public class CommandRegistry {
         commands.put("#어쩌라고", new DieCommand());
         commands.put("#죽어", new DieCommand());
         commands.put("#잠깐", new WaitCommand());
-        commands.put("#그럼 이만", new ByeCommand());
+        commands.put("#그럼", new ByeCommand());
     }
 
     public BotCommand getCommand(String cmd) {
@@ -52,7 +52,12 @@ class WaitCommand implements BotCommand {
 class ByeCommand implements BotCommand {
     @Override
     public void execute(MessageReceivedEvent event, String[] args) {
-        event.getChannel().sendMessage("가보도록 하지").queue();
+        if (event.getMessage().getContentRaw().equals("#그럼 이만")) {
+            event.getChannel().sendMessage("가보도록 하지").queue();
+        } else {
+            event.getChannel().sendMessage("사람말을 해;; `#help`나 입력해 보셈.").queue();
+        }
+
     }
 }
 
