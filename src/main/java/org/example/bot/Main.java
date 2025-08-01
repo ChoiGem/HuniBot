@@ -65,17 +65,10 @@ class BotListener extends ListenerAdapter {
                     int n = 100;
                     double p = 0.9;
                     double mean = n * p;
-                    double sd = Math.sqrt(n * p * (1 - p));
 
                     int successAvg = (int) Math.round(mean);
-                    int success50 = (int) Math.round(mean + 0.0 * sd);
-                    int success30 = (int) Math.round(mean + 0.52 * sd);
-                    int success80 = (int) Math.round(mean + 0.84 * sd);
 
                     int profitAvg = oilPrice * successAvg - totalCost;
-                    int profit50 = oilPrice * success50 - totalCost;
-                    int profit30 = oilPrice * success30 - totalCost;
-                    int profit80 = oilPrice * success80 - totalCost;
 
                     NumberFormat nf = NumberFormat.getNumberInstance(Locale.KOREA);
 
@@ -90,14 +83,11 @@ class BotListener extends ListenerAdapter {
 
                     embed.addBlankField(false);
 
-                    embed.addField("🧪 오일 제작했을 경우", "▼ 아래는 오일을 제작했을 때의 시뮬레이션 결과입니다.", false);
+                    embed.addField("🧪 오일 제작의 경우", "▼ 아래는 오일을 제작했을 때의 시뮬레이션 결과입니다.", false);
                     embed.addField("🎯 평균 성공 수 (90%)", successAvg + "개", true);
                     embed.addField("💸 평균 수익", formatProfit(profitAvg), true);
-                    embed.addField("📊 상위 50% 운 (≈ " + success50 + "개)", formatProfit(profit50), true);
-                    embed.addField("📈 상위 30% 운 (≈ " + success30 + "개)", formatProfit(profit30), true);
-                    embed.addField("🎉 상위 80% 운 (≈ " + success80 + "개)", formatProfit(profit80), true);
 
-                    embed.setFooter("쥬니퍼 오일 계산기 by HuniBot");
+                    embed.setFooter("쥬니퍼베리 오일 계산기 by HuniBot");
 
                     event.getChannel().sendMessageEmbeds(embed.build()).queue();
 
