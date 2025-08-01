@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import java.awt.*;
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -24,6 +25,14 @@ public class Main {
 }
 
 class BotListener extends ListenerAdapter {
+    private final String[] greetings = {
+            "ㅋㅋ뭘봐",
+            "어쩌라고",
+            "뭐래 ㅋㅋ",
+            "ㅋ",
+            "아니"
+    };
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getAuthor().isBot()) return;
@@ -43,7 +52,10 @@ class BotListener extends ListenerAdapter {
                         .queue();
             }
             if (event.getMessage().getContentRaw().equals("#안녕")) {
-                event.getChannel().sendMessage("ㅋㅋ뭘봐").queue();
+                int idx = ThreadLocalRandom.current().nextInt(greetings.length);
+                String reply = greetings[idx];
+
+                event.getChannel().sendMessage(reply).queue();
             }
 
             if (event.getMessage().getContentRaw().startsWith("#쥬니퍼계산")) {
