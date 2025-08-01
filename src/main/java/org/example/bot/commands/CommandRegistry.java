@@ -19,6 +19,8 @@ public class CommandRegistry {
         commands.put("#ㅋ", new LolCommand());
         commands.put("#어쩌라고", new DieCommand());
         commands.put("#죽어", new DieCommand());
+        commands.put("#잠깐", new WaitCommand());
+        commands.put("#그럼 이만", new ByeCommand());
     }
 
     public BotCommand getCommand(String cmd) {
@@ -39,4 +41,19 @@ class LolCommand implements BotCommand {
         event.getChannel().sendMessage("ㅋ").queue();
     }
 }
+
+class WaitCommand implements BotCommand {
+    @Override
+    public void execute(MessageReceivedEvent event, String[] args) {
+        event.getChannel().sendMessage("조금 있다가 오도록 하지").queue();
+    }
+}
+
+class ByeCommand implements BotCommand {
+    @Override
+    public void execute(MessageReceivedEvent event, String[] args) {
+        event.getChannel().sendMessage("가보도록 하지").queue();
+    }
+}
+
 
