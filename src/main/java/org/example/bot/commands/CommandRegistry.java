@@ -1,10 +1,10 @@
 package org.example.bot.commands;
 
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
 
 // 커맨드 종류별 객체 생성
 public class CommandRegistry {
@@ -23,6 +23,8 @@ public class CommandRegistry {
         commands.put("#잠깐", new WaitCommand());
         commands.put("#그럼", new ByeCommand());
         commands.put("#그럼이만", new ByeCommand());
+        commands.put("#바보", new BaboCommand());
+        commands.put("#환승", new BaboCommand());
     }
 
     public BotCommand getCommand(String cmd) {
@@ -64,4 +66,12 @@ class ByeCommand implements BotCommand {
     }
 }
 
+class BaboCommand implements BotCommand {
+    String baboId = "661162635852513300";
+
+    @Override
+    public void execute(MessageReceivedEvent event, String[] args) {
+        event.getChannel().sendMessage("<@&" + baboId + ">").queue();
+    }
+}
 
