@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
+import java.util.List;
 import java.time.Duration;
 
 public class MaplescouterCommand implements BotCommand {
@@ -44,20 +45,24 @@ public class MaplescouterCommand implements BotCommand {
 
                 // WebDriverWait로 요소 대기
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-                WebElement hexaElement = wait.until(
-                        ExpectedConditions.visibilityOfElementLocated(
+                List<WebElement> elements = wait.until(
+                        ExpectedConditions.visibilityOfAllElementsLocatedBy(
                                 By.cssSelector("div.text-\\[\\#1D4ED8\\].font-extrabold")
                         )
                 );
 
-                String hexaValue = hexaElement.getText();
+                String powerValue = elements.get(0).getText();
+                String itemValue = elements.get(1).getText();
+                String hexaValue = elements.get(2).getText();
 
                 EmbedBuilder result = new EmbedBuilder()
-                    .setTitle("헥사환산 결과", url)
-                    .setColor(Color.CYAN)
-                    .addField("캐릭터명", name, true)
-                    .addField("헥사환산", hexaValue, true)
-                    .setFooter("maplescouter.com 실시간 데이터");
+                        .setTitle("헥사환산 결과", url)
+                        .setColor(Color.CYAN)
+                        .addField("캐릭터명", name, true)
+                        .addField("전투력", powerValue, false)
+                        .addField("아이템환산", itemValue, true)
+                        .addField("헥사환산", hexaValue, true)
+                        .setFooter("maplescouter.com 실시간 데이터");
 
                 sentMessage.editMessageEmbeds(result.build()).queue();
 
