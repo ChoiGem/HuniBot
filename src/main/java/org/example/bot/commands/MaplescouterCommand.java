@@ -27,42 +27,48 @@ public class MaplescouterCommand implements BotCommand {
         String name = parts[1];
         String preset = "00000"; // 필요 시 커스터마이즈
 
-        try {
-            // ChromeDriver 경로 설정
-            System.setProperty("webdriver.chrome.driver", "chromedriver-win64/chromedriver.exe");
+        EmbedBuilder eb = new EmbedBuilder().setTitle("불러오는 중...\n오래 걸림");
+        event.getChannel().sendMessageEmbeds(eb.build()).queue(sentMessage -> {
+            try {
+                // ChromeDriver 경로 설정
+                System.setProperty("webdriver.chrome.driver", "chromedriver-win64/chromedriver.exe");
 
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless"); // 창 없이 실행
-            options.addArguments("--disable-gpu");
-            options.addArguments("--no-sandbox");
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--headless"); // 창 없이 실행
+                options.addArguments("--disable-gpu");
+                options.addArguments("--no-sandbox");
 
-            WebDriver driver = new ChromeDriver(options);
-            String url = "https://maplescouter.com/info?name=" + name + "&preset=" + preset;
-            driver.get(url);
+                WebDriver driver = new ChromeDriver(options);
+                String url = "https://maplescouter.com/info?name=" + name + "&preset=" + preset;
+                driver.get(url);
 
-            // WebDriverWait로 요소 대기
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-            WebElement hexaElement = wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(
-                            By.cssSelector("div.text-\\[\\#1D4ED8\\].font-extrabold")
-                    )
-            );
+                // WebDriverWait로 요소 대기
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+                WebElement hexaElement = wait.until(
+                        ExpectedConditions.visibilityOfElementLocated(
+                                By.cssSelector("div.text-\\[\\#1D4ED8\\].font-extrabold")
+                        )
+                );
 
-            String hexaValue = hexaElement.getText();
+                String hexaValue = hexaElement.getText();
 
-            EmbedBuilder eb = new EmbedBuilder();
-            eb.setTitle("헥사환산 결과", url);
-            eb.setColor(Color.CYAN);
-            eb.addField("캐릭터명", name, true);
-            eb.addField("헥사환산", hexaValue, true);
-            eb.setFooter("maplescouter.com 실시간 데이터");
+                EmbedBuilder result = new EmbedBuilder()
+                    .setTitle("헥사환산 결과", url)
+                    .setColor(Color.CYAN)
+                    .addField("캐릭터명", name, true)
+                    .addField("헥사환산", hexaValue, true)
+                    .setFooter("maplescouter.com 실시간 데이터");
 
-            event.getChannel().sendMessageEmbeds(eb.build()).queue();
+                sentMessage.editMessageEmbeds(result.build()).queue();
 
-            driver.quit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            event.getChannel().sendMessage("헥사환산 값을 가져오는 데 실패했습니다.").queue();
-        }
+                driver.quit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                EmbedBuilder result = new EmbedBuilder()
+                        .setTitle("헥사환산 값을 가져오는 데 실패했습니다.")
+                        .setColor(Color.CYAN);
+                sentMessage.editMessageEmbeds(result.build()).queue();
+            }
+        });
     }
 }
