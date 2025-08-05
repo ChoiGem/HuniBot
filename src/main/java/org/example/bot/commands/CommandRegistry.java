@@ -14,6 +14,7 @@ public class CommandRegistry {
         commands.put("#help", new HelpCommand());
         commands.put("#안녕", new HelloCommand());
         commands.put("#쥬니퍼계산", new JuniperCalcCommand());
+        commands.put("#환산", new MaplescouterCommand());
 
         commands.put("#싸가지", new LolCommand());
         commands.put("#ㅋ", new LolCommand());

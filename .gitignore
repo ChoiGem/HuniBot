@@ -39,3 +39,6 @@ build/
 
 ### token ###
 .env
+
+### chrome driver ###
+/chromedriver-win64/
