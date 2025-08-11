@@ -15,7 +15,9 @@ public class HelpCommand implements BotCommand {
                 .setColor(Color.CYAN)
                 .addField("#안녕", "인사를 받아 줄지도", false)
                 .addField("#쥬니퍼계산", "쥬니퍼베리 씨앗 오일 제작 이득을 계산하긴 할거임. 누가 요즘 채집하냐?", false)
-                // 필요하면 더 추가
+                .addField("#환산", "환산주스탯 가져와서 보여주는데 개오래걸리니까 하지마셈", false)
+                .addField("", "그 외에 뭔가 있을지도", false)
+                // 기능 추가 시 작성
                 .setFooter("궁금한 점이 있으면 직접 찾아봐야지 #help나 치고있어;;");
 
         event.getChannel()

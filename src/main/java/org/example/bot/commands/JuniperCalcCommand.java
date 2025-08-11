@@ -63,6 +63,6 @@ public class JuniperCalcCommand implements BotCommand {
     private String formatProfit(int profit) {
         NumberFormat nf = NumberFormat.getNumberInstance(Locale.KOREA);
         String formatted = nf.format(Math.abs(profit));
-        return (profit >= 0 ? "🟢 +" : "🔴 -") + formatted + " 메소다. 이거 벌려고 채집하네 ㅋㅋ";
+        return (profit >= 0 ? "🟢 +" : "🔴 -") + formatted + (profit >= 0 ? " 메소다. 이거 벌려고 채집하네 ㅋㅋ" : " 메소임. 개손해네 ㅋㅋ");
     }
 }
