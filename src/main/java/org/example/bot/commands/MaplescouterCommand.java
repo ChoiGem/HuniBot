@@ -70,7 +70,7 @@ public class MaplescouterCommand implements BotCommand {
             } catch (Exception e) {
                 e.printStackTrace();
                 EmbedBuilder result = new EmbedBuilder()
-                        .setTitle("헥사환산 값을 가져오는 데 실패했습니다.")
+                        .setTitle("헥사환산 가져오는거 실패해버림. 아쉽지뭐")
                         .setColor(Color.CYAN);
                 sentMessage.editMessageEmbeds(result.build()).queue();
             }
